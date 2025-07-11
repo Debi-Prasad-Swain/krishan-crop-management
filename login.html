@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/login4.css">
+</head>
+<body>
+    <section>
+        <div class="container">
+            <div class="heading">Login Form</div>
+            <form action="../login.php" method="post" class="form">
+                <div class="input-block">
+                    <input required class="input" type="email" name="email" id="email" placeholder="E-mail">
+                </div>
+                <div class="input-block">
+                    <input required class="input" type="password" name="password" id="password" placeholder="Password">
+                </div>
+                <div class="input-block">
+                    <input class="login-button" type="submit" value="Login">
+                    <!-- Hidden input field for redirection -->
+                    <input type="hidden" name="redirect" value="/KRISHAN/main.php">
+                </div>
+            </form>
+            <p>Don't have an account? <a href="../signup.php">signup now</a></p>
+        </div>      
+    </section>
+</body>
+</html>

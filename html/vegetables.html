@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vegetables</title>
+  <link rel="stylesheet" href="../css/category.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+
+</head>
+<style>
+ * {
+    /* Consider removing if not needed globally */
+    /* color: #000000a3; */
+    text-transform: capitalize;
+    font-family: 'Helvetica', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Added for consistent sizing */
+}
+
+html {
+    overflow-x: hidden;
+}
+
+body {
+    background-color: #e8f1f2;
+}
+
+section {
+    padding: 2rem 9%;
+}
+
+.category .heading {
+    margin: 0 0 4rem 15%; /* Adjusted for better spacing */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 60px;
+    height: 90px;
+    width: 700px;
+    background: linear-gradient(45deg, rgb(16, 137, 211) 0%, rgb(18, 177, 209) 100%);
+    color: #ffffff;
+}
+
+.category .heading .search {
+    display: inline-block;
+    position: relative;
+    margin-bottom: 4rem;
+    padding-left: 18rem;
+}
+
+.category .heading .search input {
+    width: 400px;
+    height: 25px;
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.category .heading .search button {
+    background: linear-gradient(45deg, rgb(16, 137, 211) 0%, rgb(18, 177, 209) 100%);
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    padding: 13px 25px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 0;
+    right: 0;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.category .heading .search button:hover {
+    transform: scale(1.1);
+    background-color: rgba(44, 93, 136, 0.936);
+}
+
+.card {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    width: 100%;
+    border-radius: 1rem;
+}
+
+.card .box img {
+    width: 100%;
+    height: auto;
+    border-radius: 1rem;
+    object-fit: cover;
+    aspect-ratio: 1 / 1;
+    box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
+                rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset,
+                rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset,
+                rgba(0, 0, 0, 0.06) 0px 2px 1px,
+                rgba(0, 0, 0, 0.09) 0px 4px 2px,
+                rgba(0, 0, 0, 0.09) 0px 8px 4px,
+                rgba(0, 0, 0, 0.09) 0px 16px 8px,
+                rgba(0, 0, 0, 0.09) 0px 32px 16px;
+}
+
+.card .box img:hover {
+    transform: scale(1.05);
+    transition: transform 0.2s ease;
+}
+
+button {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    outline: none;
+    border: 0;
+    background: transparent;
+    padding: 0;
+    font-size: inherit;
+    font-family: inherit;
+    margin-left: 2.8rem;
+    margin-top: 0.9rem;
+}
+
+button.learn-more {
+    width: 12rem;
+    height: auto;
+}
+
+button.learn-more .circle {
+    transition: width 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+    position: relative;
+    display: block;
+    margin: 0;
+    width: 3rem;
+    height: 3rem;
+    background: linear-gradient(45deg, rgb(16, 137, 211) 0%, rgb(18, 177, 209) 100%);
+    border-radius: 1.625rem;
+}
+
+button.learn-more .circle .icon {
+    transition: background 0.45s cubic-bezier(0.65, 0, 0.076, 1), transform 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    background: #fff;
+}
+
+button.learn-more .circle .icon.arrow {
+    transition: background 0.45s cubic-bezier(0.65, 0, 0.076, 1), transform 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+    left: 0.625rem;
+    width: 1.125rem;
+    height: 0.125rem;
+    background: none;
+}
+
+button.learn-more .circle .icon.arrow::before {
+    position: absolute;
+    content: "";
+    top: -0.29rem;
+    right: 0.0625rem;
+    width: 0.625rem;
+    height: 0.625rem;
+    border-top: 0.125rem solid #fff;
+    border-right: 0.125rem solid #fff;
+    transform: rotate(45deg);
+}
+
+button.learn-more .button-text {
+    transition: color 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0.75rem 0;
+    margin-left: 1.85rem;
+    color: #282936;
+    font-weight: 700;
+    line-height: 1.6;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+button:hover .circle {
+    width: 100%;
+}
+
+button:hover .circle .icon.arrow {
+    background: #fff;
+    transform: translate(1rem, 0);
+}
+
+button:hover .button-text {
+    color: #fff;
+}
+
+.footer-distributed {
+    background: #525859;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12);
+    width: 100%;
+    text-align: left;
+    font: bold 16px sans-serif;
+    padding: 55px 50px;
+}
+
+.footer-distributed .footer-left,
+.footer-distributed .footer-center,
+.footer-distributed .footer-right {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.footer-distributed .footer-left {
+    width: 40%;
+}
+
+.footer-distributed h3 {
+    color: #ffffff;
+    font: normal 36px 'Open Sans', cursive;
+    margin: 0;
+}
+
+.footer-distributed h3 span {
+    color: linear-gradient(45deg, rgb(16, 137, 211) 0%, rgb(18, 177, 209) 100%);
+}
+
+.footer-distributed .footer-links {
+    color: #ffffff;
+    margin: 20px 0 12px;
+    padding: 0;
+}
+
+.footer-distributed .footer-links a {
+    display: inline-block;
+    line-height: 1.8;
+    font-weight: 400;
+    text-decoration: none;
+    color: inherit;
+}
+
+.footer-distributed .footer-company-name {
+    color: #222;
+    font-size: 14px;
+    font-weight: normal;
+    margin: 0;
+}
+
+.footer-distributed .footer-center {
+    width: 35%;
+}
+
+.footer-distributed .footer-center i {
+    background-color: #33383b;
+    color: #ffffff;
+    font-size: 25px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 42px;
+    margin: 10px 15px;
+    vertical-align: middle;
+}
+
+.footer-distributed .footer-center i.fa-envelope {
+    font-size: 17px;
+    line-height: 38px;
+}
+
+.footer-distributed .footer-center p {
+    display: inline-block;
+    color: #ffffff;
+    font-weight: 400;
+    vertical-align: middle;
+    margin: 0;
+}
+
+.footer-distributed .footer-center p span {
+    display: block;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 2;
+}
+
+.footer-distributed .footer-center p a {
+    color: linear-gradient(45deg, rgb(16, 137, 211) 0%, rgb(18, 177, 209) 100%);
+    text-decoration: none;
+}
+
+.footer-distributed .footer-links a:before {
+    content: "|";
+    font-weight: 300;
+    font-size: 20px;
+    color: #fff;
+    display: inline-block;
+    padding-right: 5px;
+}
+
+.footer-distributed .footer-links .link-1:before {
+    content: none;
+}
+
+.footer-distributed .footer-links a:hover {
+    transform: scaleX(1.2);
+    text-decoration: underline;
+    color: linear-gradient(45deg, rgb(16, 137, 211) 0%, rgb(18, 177, 209) 100%);
+}
+
+.footer-distributed .footer-right {
+    width: 20%;
+}
+
+.footer-distributed .footer-company-about {
+    line-height: 20px;
+    color: #92999f;
+    font-size: 13px;
+    font-weight: normal;
+    margin: 0;
+}
+
+.footer-distributed .footer-company-about span {
+    display: block;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.footer-distributed .footer-icons {
+    margin-top: 25px;
+}
+
+.footer-distributed .footer-icons a {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    background-color: #33383b;
+    border-radius: 2px;
+    font-size: 20px;
+    color: #ffffff;
+    text-align: center;
+    line-height: 35px;
+    margin-right: 3px;
+    margin-bottom: 5px;
+}
+
+.footer-distributed .footer-icons a i {
+    color: #ffffff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 880px) {
+    .footer-distributed {
+        font: bold 14px sans-serif;
+        padding: 30px 20px; /* Adjusted padding */
+    }
+
+    .footer-distributed .footer-left,
+    .footer-distributed .footer-center,
+    .footer-distributed .footer-right {
+        display: block;
+        width: 100%;
+        margin-bottom: 40px;
+        text-align: center;
+    }
+
+    .footer-distributed .footer-center i {
+        margin-left: 0;
+    }
+}
+
+</style>
+
+<body>
+
+  <section id="category" class="category">
+
+    <div class="heading">
+      <span>V</span>
+      <span>E</span>
+      <span>G</span>
+      <span>E</span>
+      <span>T</span>
+      <span>A</span>
+      <span>B</span>
+      <span>L</span>
+      <span>E</span>
+      <span>S</span>
+
+    </div>
+
+    <div class="card">
+
+      <div class="box">
+        <img src="../catagory photos/beetroot-farming-in-india.jpeg" alt="">
+        <button class="learn-more" onclick="window.location.href='../vegetable/BEETROOT.html'">
+          <span class="circle" aria-hidden="true">
+            <span class="icon arrow"></span>
+          </span>
+          <span class="button-text">BEETROOT</span>
+        </button>
+      </div>
+
+      <div class="box">
+        <img src="../catagory photos/cauliflower-farming.jpeg" alt="">
+        <button class="learn-more" onclick="window.location.href='../vegetable/CAULIFLOWER.html'">
+          <span class="circle" aria-hidden="true">
+            <span class="icon arrow"></span>
+          </span>
+          <span class="button-text">CAULIFLOWER</span>
+        </button>
+      </div>
+
+      <div class="box">
+        <img src="../catagory photos/capsicum-farming.jpeg" alt="">
+        <button class="learn-more" onclick="window.location.href='../vegetable/CAPSICUM.html'">
+          <span class="circle" aria-hidden="true">
+            <span class="icon arrow"></span>
+          </span>
+          <span class="button-text">CAPSICUM</span>
+        </button>
+      </div>
+
+      <div class="box">
+        <img src="../catagory photos/cucumber-farming-in-india.jpeg" alt="">
+        <button class="learn-more" onclick="window.location.href='../vegetable/CUCUMBER.html'">
+          <span class="circle" aria-hidden="true">
+            <span class="icon arrow"></span>
+          </span>
+          <span class="button-text">CUCUMBER</span>
+        </button>
+      </div>
+
+      <div class="box">
+        <img src="../catagory photos/tomato-farming-.jpeg" alt="">
+        <button class="learn-more" onclick="window.location.href='../vegetable/TOMATO.html'">
+          <span class="circle" aria-hidden="true">
+            <span class="icon arrow"></span>
+          </span>
+          <span class="button-text">TOMATO</span>
+        </button>
+      </div>
+
+      <div class="box">
+        <img src="../catagory photos/potato-farming-in-india.jpeg" alt="">
+        <button class="learn-more" onclick="window.location.href='../vegetable/POTATO.html'">
+          <span class="circle" aria-hidden="true">
+            <span class="icon arrow"></span>
+          </span>
+          <span class="button-text">POTATO</span>
+        </button>
+      </div>
+
+      <div class="box">
+        <img src="../catagory photos/cabbage-farming.jpeg" alt="">
+        <button class="learn-more" onclick="window.location.href='../vegetable/CABBAGE.html'">
+          <span class="circle" aria-hidden="true">
+            <span class="icon arrow"></span>
+          </span>
+          <span class="button-text">CABBAGE</span>
+        </button>
+      </div>
+
+      <div class="box">
+        <img src="../catagory photos/garlic-farming.jpeg" alt="">
+        <button class="learn-more" onclick="window.location.href='../vegetable/GARLIC.html'">
+          <span class="circle" aria-hidden="true">
+            <span class="icon arrow"></span>
+          </span>
+          <span class="button-text">GARLIC</span>
+        </button>
+      </div>
+
+      <div class="box">
+        <img src="../catagory photos/ginger-farming.jpeg" alt="">
+        <button class="learn-more" onclick="window.location.href='../vegetable/GINGER.html'">
+          <span class="circle" aria-hidden="true">
+            <span class="icon arrow"></span>
+          </span>
+          <span class="button-text">GINGER</span>
+        </button>
+      </div>
+
+      <div class="box">
+        <img src="../catagory photos/green-chilli-farming.jpeg" alt="">
+        <button class="learn-more" onclick="window.location.href='../vegetable/GREENCHILLI.html'">
+          <span class="circle" aria-hidden="true">
+            <span class="icon arrow"></span>
+          </span>
+          <span class="button-text">GREEN-CHILLI</span>
+        </button>
+      </div>
+
+      <div class="box">
+        <img src="../catagory photos/green-pumpkin-farming.jpeg" alt="">
+        <button class="learn-more" onclick="window.location.href='../vegetable/PUMPKIN.html'">
+          <span class="circle" aria-hidden="true">
+            <span class="icon arrow"></span>
+          </span>
+          <span class="button-text">PUMPKIN</span>
+        </button>
+      </div>
+
+      <div class="box">
+        <img src="../catagory photos/onion-farming.jpeg" alt="">
+        <button class="learn-more" onclick="window.location.href='../vegetable/ONION.html'">
+          <span class="circle" aria-hidden="true">
+            <span class="icon arrow"></span>
+          </span>
+          <span class="button-text">ONION</span>
+        </button>
+      </div>
+
+      <div class="box">
+        <img src="../catagory photos/tomato-farming-in-india.jpeg" alt="">
+        <button class="learn-more" onclick="window.location.href='../vegetable/TOMATO.html'">
+          <span class="circle" aria-hidden="true">
+            <span class="icon arrow"></span>
+          </span>
+          <span class="button-text">TOMATO</span>
+        </button>
+      </div>
+
+      <div class="box">
+        <img src="../catagory photos/beans-farming-.jpeg" alt="">
+        <button class="learn-more" onclick="window.location.href='../vegetable/Beans.html'">
+          <span class="circle" aria-hidden="true">
+            <span class="icon arrow"></span>
+          </span>
+          <span class="button-text">BEANS</span>
+        </button>
+      </div>
+
+      <div class="box">
+        <img src="../catagory photos/carrot-farming-.jpeg" alt="">
+        <button class="learn-more" onclick="window.location.href='../vegetable/CARROT.html'">
+          <span class="circle" aria-hidden="true">
+            <span class="icon arrow"></span>
+          </span>
+          <span class="button-text">CARROT</span>
+        </button>
+      </div>
+    </div>
+
+  </section>
+
+  <footer class="footer-distributed">
+
+        <div class="footer-left">
+
+            <!-- <h3>Company<span>logo</span></h3> -->
+            <div class="logo-footer">
+                <a href="#home"><img src="image/logo1.png" alt="" href="#"></a>
+        </div>
+
+            <p class="footer-links">
+                <a href="#home" class="link-1">Home</a>
+
+                <a href="#category">category</a>
+
+                <a href="#aboutus">About us</a>
+                <a href="#contact">Contact</a>
+            </p>
+
+            <p class="footer-company-name">Company Name © 2015</p>
+        </div>
+
+        <div class="footer-center">
+
+            <div>
+                <i class="fa-solid fa-location-dot"></i>
+                <p>GIET UNIVERESITY,GUNUPUR</p>
+            </div>
+
+            <div>
+                <i class="fa-solid fa-phone"></i>
+                <p>+919692391711</p>
+            </div>
+
+            <div>
+                <i class="fa-solid fa-envelope"></i>
+                <p><a href="mailto:support@company.com">krisan@company.com</a></p>
+            </div>
+
+        </div>
+
+        <div class="footer-right">
+
+            <p class="footer-company-about">
+                <span>THANK YOU FOR VISITING US.❤️❤️</span>
+            </p>
+
+            <div class="footer-icons">
+
+                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#"><i class="fa-brands fa-github"></i></a>
+
+            </div>
+
+        </div>
+
+    </footer>
+    <!-- footer section end -->
+
+
+</body>
+
+</html>
